@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+  </head>
+
+  <body onload="loadPoster()">
+    <h1 id="title"></h1>
+    <h2>Edition</h2>
+    <h3>u:ma:mi</h3>
+
+    <img id="poster" width="500" />
+
+    <p>Select Size:</p>
+    <ul>
+      <li>21x30 CHF39.-</li>
+      <li>30x40 CHF45.-</li>
+      <li>40x50 CHF55.-</li>
+      <li>50x70 CHF69.-</li>
+    </ul>
+  </body>
+
+  <script src="./posters.js"></script>
+  <script>
+    function loadPoster() {
+      const url = new URL(window.location);
+
+      const poster = url.searchParams.get("poster");
+      if (poster === null) window.history.back();
+
+      const title = POSTERS[poster];
+
+      document.title = title;
+      document.querySelector("#poster").src = `./posters/${poster}.jpg`;
+      document.querySelector("#title").innerHTML = title;
+    }
+  </script>
+</html>
