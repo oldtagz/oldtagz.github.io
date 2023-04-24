@@ -4,14 +4,22 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>oldtagz</title>
+    <link rel="stylesheet" href="./style.css" />
   </head>
   <body onload="loadPosters()">
-    <button>Menu</button>
-    <button>Cart</button>
-
     <section id="home">
-      <h1>OLD<br />TAG<br />Z</h1>
+      <button id="menu-button"></button>
+
+      <button id="cart"></button>
+
+      <button class="close">&#9587;</button>
+      <div id="logo">
+        <p>OLD</p>
+        <p>TAG</p>
+        <p>Z</p>
+      </div>
     </section>
 
     <section id="posters">
@@ -19,43 +27,58 @@
       <h3>Edititon</h3>
       <h4>u:ma:mi</h4>
       <h5>4 prints</h5>
+
+      <div id="poster-images"></div>
     </section>
 
     <section id="about">
       <h2>ABOUT ME</h2>
 
-      <p>
-        “Sometimes I stroll off from my beloved Bern, Seeking life, new flows
-        and lessons to learn. Amid highs and lows, I embrace my way, Capturing
-        light and gloom on each and every day.
-      </p>
+      <div id="about-poem">
+        <p>
+          “Sometimes I stroll off from my beloved Bern, Seeking life, new flows
+          and lessons to learn. Amid highs and lows, I embrace my way, Capturing
+          light and gloom on each and every day.
+        </p>
 
-      <p>
-        My lenses become my tools and creators of choice, like a sponge drenched
-        in sight and noise. I soak them up and make them mine, Crafting stories,
-        line by line.
-      </p>
+        <p>
+          My lenses become my tools and creators of choice, like a sponge
+          drenched in sight and noise. I soak them up and make them mine,
+          Crafting stories, line by line.
+        </p>
 
-      <p>
-        There's mystery in every frame, A hint of something more, untamed. So,
-        do come and join me on this fabulous ride, As we explore life's ebb and
-        tide.”
-      </p>
+        <p>
+          There's mystery in every frame, A hint of something more, untamed. So,
+          do come and join me on this fabulous ride, As we explore life's ebb
+          and tide.”
+        </p>
+      </div>
     </section>
 
-    <a href="https://instagram.com/oldtagz" target="_blank">Instagram</a>
-    <a href="mailto:kiry.loetscher@gmail.com">Email</a>
+    <div id="menu">
+      <ul>
+        <li>POSTERS</li>
+        <li>ABOUT</li>
+      </ul>
+
+      <a id="instagram" href="https://instagram.com/oldtagz" target="_blank">
+        <button></button>
+      </a>
+      <a id="email" href="mailto:kiry.loetscher@gmail.com">
+        <button></button>
+      </a>
+    </div>
   </body>
 
   <script src="./posters.js"></script>
   <script>
     function loadPosters() {
-      const postersSection = document.querySelector("#posters");
+      const posters = document.querySelector("#poster-images");
       for (const [file, title] of Object.entries(POSTERS)) {
         posters.innerHTML += `
         <figure>
           <a href="./poster.html?poster=${file}" target="_blank">
-            <img src="./posters/${file}.jpg" width="300" />
+            <img src="./posters/${file}.jpg" />
           </a>
           <figcaption>${title}</figcaption>
         </figure>
