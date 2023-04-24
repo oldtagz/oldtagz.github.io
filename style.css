@@ -14,8 +14,9 @@ div {
   margin: 0;
 }
 
-body > section {
-  width: 100%;
+body > section,
+#menu {
+  width: 100vmin;
   height: 100vmax;
 }
 
@@ -89,16 +90,14 @@ a {
 }
 
 #email {
-  position: relative;
-  top: 200px;
-  left: -50px;
   background-image: url("./icons/e-mail.svg");
-  background-color: transparent;
   background-size: contain;
   width: 50px;
   height: 50px;
   border: none;
   cursor: pointer;
+  position: relative;
+  bottom: 0;
 }
 
 #menu-button {
@@ -114,10 +113,8 @@ a {
 }
 
 #menu {
-  display: none;
-  height: 100vmax;
-  width: 100%;
   position: fixed;
+  max-height: 100vmax;
   background-color: rgba(0, 0, 0, 0.65);
 }
 
@@ -144,12 +141,18 @@ a {
   margin: 20% 0 0 30%;
 }
 
+#menu #contact {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  gap: 25px;
+  padding: 25px;
+}
+
 #instagram {
   position: relative;
-  top: 198px;
-  left: 80px;
-  background-image: url("./Icons/instagram.png");
-  background-color: transparent;
+  background-image: url("./icons/instagram.png");
   background-size: contain;
   width: 50px;
   height: 50px;
@@ -162,14 +165,9 @@ a {
   border: none;
   cursor: pointer;
   position: fixed;
+  color: white;
   top: 17.5%;
   margin: 10%;
-}
-
-.close {
-  position: absolute;
-  content: "&#9587";
-  display: block;
 }
 
 #purchase {
