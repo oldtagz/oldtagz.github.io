@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title></title>
+    <link rel="stylesheet" href="./style.css" />
   </head>
 
   <body onload="loadPoster()">
@@ -14,13 +15,30 @@
 
     <img id="poster" width="500" />
 
-    <p>Select Size:</p>
-    <ul>
-      <li>21x30 CHF39.-</li>
-      <li>30x40 CHF45.-</li>
-      <li>40x50 CHF55.-</li>
-      <li>50x70 CHF69.-</li>
-    </ul>
+    <section id="purchase">
+      <div class="size-select">
+        <p>Select size:</p>
+        <div class="size-select-closed">
+          <span>21x30, CHF39</span>
+          <span class="down-arrow">&#9660;</span>
+        </div>
+      </div>
+
+      <div class="add-to-cart">
+        <span>Add to cart</span>
+      </div>
+    </section>
+
+    <div class="size-select-open">
+      <button>&#9587;</button>
+      <p>Select Size:</p>
+      <ul>
+        <li>21x30 CHF39,</li>
+        <li>30x40 CHF45,</li>
+        <li>40x50 CHF55,</li>
+        <li>50x70 CHF69,</li>
+      </ul>
+    </div>
   </body>
 
   <script src="./posters.js"></script>
