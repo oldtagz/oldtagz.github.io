@@ -52,17 +52,6 @@ a {
   display: block;
 }
 
-#cart,
-.close {
-  position: fixed;
-  filter: invert(1);
-  margin: 25px;
-}
-
-#cart {
-  right: 0;
-}
-
 #home {
   background-image: url("./posters/shinjuku.jpg");
   background-size: 200%;
@@ -89,12 +78,14 @@ a {
 
 #cart {
   background-image: url("./icons/shopping-cart.png");
-  background-color: transparent;
   background-size: contain;
-  width: 50px;
-  height: 50px;
+  width: 65px;
+  height: 65px;
   border: none;
   cursor: pointer;
+  position: fixed;
+  right: 0;
+  margin: 15px;
 }
 
 #email {
@@ -112,19 +103,22 @@ a {
 
 #menu-button {
   background-image: url("./icons/menu-button.jpg");
-  background-color: transparent;
   background-size: contain;
   width: 50px;
   height: 50px;
   border: none;
   cursor: pointer;
+  top: 17.5%;
+  margin: 10%;
+  position: fixed;
 }
 
 #menu {
+  display: none;
   height: 100vmax;
   width: 100%;
   position: fixed;
-  background-color: rgba(255, 255, 255, 0.4);
+  background-color: rgba(0, 0, 0, 0.65);
 }
 
 #menu a {
@@ -136,13 +130,18 @@ a {
   color: white;
   letter-spacing: 0.5em;
   margin: 0;
-  padding: 25% 0 0 0;
+  padding: 55% 0 0 10%;
   color: white;
   font-weight: 300;
+  font-size: 18pt;
 }
 
 #menu ul li {
-  margin: 35% 0;
+  margin: 20% 0;
+}
+
+#menu ul li:last-child {
+  margin: 20% 0 0 30%;
 }
 
 #instagram {
@@ -159,12 +158,12 @@ a {
 }
 
 .close {
-  background-color: transparent;
-  background-size: contain;
-  width: 30px;
-  height: 30px;
+  font-size: 14pt;
   border: none;
   cursor: pointer;
+  position: fixed;
+  top: 17.5%;
+  margin: 10%;
 }
 
 .close {
@@ -290,6 +289,11 @@ a {
 
 #about h2 {
   flex-grow: 1;
+  color: black;
+  font-weight: 300;
+  margin: 45% 0 0 50%;
+  font-style: normal;
+  font-size: 18pt;
 }
 
 #about-poem {
