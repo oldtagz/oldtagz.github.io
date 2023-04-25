@@ -8,7 +8,7 @@
     <title>oldtagz</title>
     <link rel="stylesheet" href="./style.css" />
   </head>
-  <body onload="loadPosters()">
+  <body onload="loadPosters(); loadCheckout()">
     <button id="menu-button" onclick="openSlideOut('menu')"></button>
     <button id="checkout-button" onclick="openSlideOut('checkout')"></button>
 
@@ -82,18 +82,10 @@
       <h2>Shopping cart</h2>
       <button class="close" onclick="closeSlideOut('checkout')">&#9587;</button>
 
-      <div class="poster-checkout">
-        <h3>Okubo Station 1AM</h3>
-        <img src="./posters/okubo-station.jpg" width="50" />
-        <h4>Size:</h4>
-        <select>
-          <option>21x30 cm</option>
-        </select>
-        <h4>Quantity:</h4>
-        <input type="number" value="1" />
-      </div>
-
-      <p id="checkout-total">Total: 39CHF</p>
+      <div id="checkout-poster-items"></div>
+      <p id="checkout-total">
+        Total: <span id="checkout-total-value"></span>CHF
+      </p>
 
       <div id="checkout-actions">
         <button class="checkout-button">Checkout Instagram</button>
@@ -103,7 +95,39 @@
   </body>
 
   <script src="./posters.js"></script>
+  <script src="./cart.js"></script>
   <script>
+    const loadCheckout = () => {
+      const url = new URL(window.location);
+      if (url.hash === "#checkout") openSlideOut("checkout");
+
+      const cart = getCart();
+      const list = document.getElementById("checkout-poster-items");
+      for (let [poster, sizeAndAmount] of Object.entries(cart))
+        for (let [size, amount] of Object.entries(sizeAndAmount))
+          list.innerHTML += `
+        <div class="poster-checkout">
+          <h3>${POSTERS[poster]}</h3>
+          <img src="./posters/${poster}.jpg" width="50" />
+          <h4>Size:</h4>
+          <select>
+            <option>${size} cm</option>
+          </select>
+          <h4>Quantity:</h4>
+          <input type="number" value="${amount}" />
+        </div>`;
+
+      document.getElementById("checkout-total-value").innerHTML =
+        Object.entries(cart).reduce((acc, [poster, sizeAndAmount]) => {
+          return (acc += Object.entries(sizeAndAmount).reduce(
+            (acc, [size, amount]) => {
+              return (acc += Number(SIZES[size]) * amount);
+            },
+            0
+          ));
+        }, 0);
+    };
+
     const loadPosters = () => {
       const posters = document.querySelector("#poster-images");
       for (const [file, title] of Object.entries(POSTERS)) {
@@ -122,13 +146,28 @@
       } Prints`;
     };
 
+    let bodyMenuListener = () => closeSlideOut("menu");
+    let bodyCheckoutListener = () => closeSlideOut("checkout");
+
     const openSlideOut = (id) => {
       document.getElementById(id).classList = "open slide-in";
       document.getElementById(`${id}-button`).style.opacity = "0";
       document.body.style.overflowY = "hidden";
+      setTimeout(() => {
+        document.body.addEventListener(
+          "click",
+          id === "menu"
+            ? bodyMenuListener
+            : id === "checkout"
+            ? bodyCheckoutListener
+            : null
+        );
+      }, 250);
     };
 
     const closeSlideOut = (id) => {
+      document.body.removeEventListener("click", bodyMenuListener);
+      document.body.removeEventListener("click", bodyCheckoutListener);
       const element = document.getElementById(id);
       document.getElementById(id).classList = "open slide-out";
       setTimeout(() => (element.classList = ""), 250);

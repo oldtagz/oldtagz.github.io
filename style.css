@@ -19,11 +19,14 @@ div {
   margin: 0;
 }
 
-body > section,
+body > section {
+  width: 100%;
+  min-height: 100vmax;
+}
+
 #menu,
 #checkout {
-  width: 100vmin;
-  height: 100vmax;
+  height: 100%;
 }
 
 h1 {
@@ -148,7 +151,6 @@ a {
 #menu {
   position: fixed;
   background-color: rgba(0, 0, 0, 0.65);
-  width: 95%;
   left: 0;
   display: flex;
   flex-direction: column;
@@ -401,7 +403,6 @@ a {
   display: flex;
   flex-direction: column;
   overflow-y: scroll;
-  width: 90%;
   right: 0;
 }
 
@@ -461,7 +462,13 @@ a {
   margin: 25px;
 }
 
-#checkout .poster-checkout {
+#checkout-poster-items {
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+}
+
+#checkout-poster-items .poster-checkout {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(2, 1fr);
@@ -470,23 +477,26 @@ a {
   justify-content: center;
   align-items: center;
   margin: 25px 0;
+  height: 75%;
 }
 
-#checkout .poster-checkout h3 {
+#checkout-poster-items .poster-checkout h3 {
   grid-column: span 3;
+  margin: 0;
 }
 
-#checkout .poster-checkout h4 {
+#checkout-poster-items .poster-checkout h4 {
   text-align: left;
 }
 
-#checkout .poster-checkout img {
-  width: 100px;
+#checkout-poster-items .poster-checkout img {
+  grid-row: 2;
   grid-row: span 2;
+  height: auto;
 }
 
-#checkout .poster-checkout select,
-#checkout .poster-checkout input {
+#checkout-poster-items .poster-checkout select,
+#checkout-poster-items .poster-checkout input {
   height: 25px;
   box-sizing: border-box;
   width: 100%;
@@ -521,6 +531,7 @@ a {
 #checkout {
   z-index: -1;
   opacity: 0;
+  width: 90%;
 }
 
 #menu.open,

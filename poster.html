@@ -30,26 +30,37 @@
         <ul id="size-select-open-list"></ul>
       </div>
 
-      <div class="add-to-cart">
+      <div
+        class="add-to-cart"
+        onclick="updateCart(state.poster, state.size, 1); window.location = '/#checkout'"
+      >
         <span>Add to cart</span>
       </div>
     </div>
   </body>
 
   <script src="./posters.js"></script>
+  <script src="./cart.js"></script>
   <script>
+    let state = {
+      slug: "",
+      size: "",
+    };
+
     const loadPoster = () => {
       const url = new URL(window.location);
 
       const poster = url.searchParams.get("poster");
       if (poster === null) window.history.back();
 
-      const title = POSTERS[poster];
+      state.poster = poster;
+      state.size = Object.keys(SIZES)[0];
 
+      const title = POSTERS[poster];
       document.title = title;
       document.getElementById("poster").src = `./posters/${poster}.jpg`;
       document.getElementById("title").innerHTML = title;
-      setSizeSelected(Object.keys(SIZES)[0]);
+      setSizeSelected(state.size);
 
       for (const [size, price] of Object.entries(SIZES)) {
         document.getElementById(
@@ -59,6 +70,8 @@
     };
 
     const setSizeSelected = (size) => {
+      state.size = size;
+
       window.scrollBy({
         top: -500,
         left: 0,
