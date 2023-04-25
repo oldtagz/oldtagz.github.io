@@ -9,16 +9,18 @@
     <link rel="stylesheet" href="./style.css" />
   </head>
   <body onload="loadPosters()">
+    <button
+      id="menu-button"
+      onclick="body.innerHTML += MENU_HTML; setTimeout(() => document.getElementById('menu').classList = '', 250)"
+    ></button>
+    <button id="cart"></button>
+
     <section id="home">
-      <button id="menu-button"></button>
-
-      <button id="cart"></button>
-
-      <div id="logo">
+      <h1 id="logo">
         <p>OLD</p>
         <p>TAG</p>
         <p>Z</p>
-      </div>
+      </h1>
     </section>
 
     <div id="checkout">
@@ -76,26 +78,9 @@
         </p>
       </div>
     </section>
-
-    <div id="menu">
-      <button class="close">&#9587;</button>
-
-      <ul>
-        <li>POSTERS</li>
-        <li>ABOUT</li>
-      </ul>
-
-      <div id="contact">
-        <a id="email" href="mailto:kiry.loetscher@gmail.com">
-          <button></button>
-        </a>
-        <a id="instagram" href="https://instagram.com/oldtagz" target="_blank">
-          <button></button>
-        </a>
-      </div>
-    </div>
   </body>
 
+  <script src="./menu.js"></script>
   <script src="./posters.js"></script>
   <script>
     function loadPosters() {

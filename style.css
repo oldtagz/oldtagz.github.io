@@ -1,5 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,500;1,100&display=swap");
 
+body {
+  min-height: 100vmax;
+}
+
 body,
 button {
   font-family: "Roboto", sans-serif;
@@ -8,7 +12,6 @@ button {
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-height: 100vmax;
 }
 
 body,
@@ -140,15 +143,43 @@ a {
   border: none;
   cursor: pointer;
   top: 14%;
+  left: 0;
   margin: 10%;
   position: fixed;
 }
 
 #menu {
-  display: none;
   position: fixed;
-  max-height: 100vmax;
   background-color: rgba(0, 0, 0, 0.65);
+  width: 95%;
+  left: 0;
+}
+
+#menu.slide-in {
+  animation: slide-in 0.25s ease-in-out;
+}
+
+#menu.slide-out {
+  animation: slide-out 0.25s ease-in-out;
+  left: -100%;
+}
+
+@keyframes slide-out {
+  0% {
+    left: 0;
+  }
+  100% {
+    left: -100%;
+  }
+}
+
+@keyframes slide-in {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 0;
+  }
 }
 
 #menu a {
