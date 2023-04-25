@@ -26,11 +26,6 @@ body > section,
   height: 100vmax;
 }
 
-#menu,
-#checkout {
-  z-index: 1;
-}
-
 h1 {
   font-weight: 100;
   font-size: 32pt;
@@ -111,7 +106,7 @@ a {
   text-align: left;
 }
 
-#cart {
+#checkout-button {
   background-image: url("./icons/shopping-cart.png");
   background-size: contain;
   width: 65px;
@@ -512,4 +507,16 @@ a {
   color: white;
   text-align: center;
   font-style: italic;
+}
+
+#menu,
+#checkout {
+  z-index: -1;
+  opacity: 0;
+}
+
+#menu.open,
+#checkout.open {
+  z-index: 1;
+  opacity: 1;
 }
