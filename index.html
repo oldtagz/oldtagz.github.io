@@ -9,11 +9,8 @@
     <link rel="stylesheet" href="./style.css" />
   </head>
   <body onload="loadPosters()">
-    <button
-      id="menu-button"
-      onclick="body.innerHTML += MENU_HTML; setTimeout(() => document.getElementById('menu').classList = '', 250)"
-    ></button>
-    <button id="cart"></button>
+    <button id="menu-button" onclick="openMenu()"></button>
+    <button id="cart" onclick="openCheckout()"></button>
 
     <section id="home">
       <h1 id="logo">
@@ -22,29 +19,6 @@
         <p>Z</p>
       </h1>
     </section>
-
-    <div id="checkout">
-      <h2>Shopping cart</h2>
-      <button class="close">&#9587;</button>
-
-      <div class="poster-checkout">
-        <h3>Okubo Station 1AM</h3>
-        <img src="./posters/okubo-station.jpg" width="50" />
-        <h4>Size:</h4>
-        <select>
-          <option>21x30 cm</option>
-        </select>
-        <h4>Quantity:</h4>
-        <input type="number" value="1" />
-      </div>
-
-      <p id="checkout-total">Total: 39CHF</p>
-
-      <div id="checkout-actions">
-        <button class="checkout-button">Checkout Instagram</button>
-        <button class="checkout-button">Checkout Email</button>
-      </div>
-    </div>
 
     <section id="posters">
       <h2>Posters</h2>
@@ -81,6 +55,7 @@
   </body>
 
   <script src="./menu.js"></script>
+  <script src="./checkout.js"></script>
   <script src="./posters.js"></script>
   <script>
     function loadPosters() {

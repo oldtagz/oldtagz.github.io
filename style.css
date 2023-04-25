@@ -146,6 +146,8 @@ a {
   left: 0;
   margin: 10%;
   position: fixed;
+  transition: opacity 0.5s;
+  opacity: 1;
 }
 
 #menu {
@@ -153,18 +155,20 @@ a {
   background-color: rgba(0, 0, 0, 0.65);
   width: 95%;
   left: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 #menu.slide-in {
-  animation: slide-in 0.25s ease-in-out;
+  animation: menu-slide-in 0.25s ease-in-out;
 }
 
 #menu.slide-out {
-  animation: slide-out 0.25s ease-in-out;
+  animation: menu-slide-out 0.25s ease-in-out;
   left: -100%;
 }
 
-@keyframes slide-out {
+@keyframes menu-slide-out {
   0% {
     left: 0;
   }
@@ -173,7 +177,7 @@ a {
   }
 }
 
-@keyframes slide-in {
+@keyframes menu-slide-in {
   0% {
     left: -100%;
   }
@@ -206,12 +210,11 @@ a {
 }
 
 #menu #contact {
-  position: fixed;
-  bottom: 0;
-  right: 0;
   display: flex;
   gap: 25px;
   padding: 25px;
+  align-self: end;
+  margin-top: auto;
 }
 
 #instagram {
@@ -395,7 +398,35 @@ a {
   display: flex;
   flex-direction: column;
   overflow-y: scroll;
-  display: none;
+  width: 90%;
+  right: 0;
+}
+
+#checkout.slide-in {
+  animation: checkout-slide-in 0.25s ease-in-out;
+}
+
+#checkout.slide-out {
+  animation: checkout-slide-out 0.25s ease-in-out;
+  right: -100%;
+}
+
+@keyframes checkout-slide-out {
+  0% {
+    right: 0;
+  }
+  100% {
+    right: -100%;
+  }
+}
+
+@keyframes checkout-slide-in {
+  0% {
+    right: -100%;
+  }
+  100% {
+    right: 0;
+  }
 }
 
 #checkout h3,
