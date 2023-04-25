@@ -462,6 +462,16 @@ a {
   margin: 25px;
 }
 
+#checkout-body,
+#checkout-empty {
+  display: flex;
+  flex-direction: column;
+}
+
+#checkout-empty p {
+  margin: 25px;
+}
+
 #checkout-poster-items {
   display: flex;
   flex-direction: column;
@@ -525,6 +535,7 @@ a {
   color: white;
   text-align: center;
   font-style: italic;
+  width: 100%;
 }
 
 #menu,

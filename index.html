@@ -82,14 +82,25 @@
       <h2>Shopping cart</h2>
       <button class="close" onclick="closeSlideOut('checkout')">&#9587;</button>
 
-      <div id="checkout-poster-items"></div>
-      <p id="checkout-total">
-        Total: <span id="checkout-total-value"></span>CHF
-      </p>
+      <div id="checkout-empty">
+        <p>Shopping cart is empty</p>
+        <div id="checkout-actions">
+          <a href="/#posters">
+            <button class="checkout-button">Browse all posters</button>
+          </a>
+        </div>
+      </div>
 
-      <div id="checkout-actions">
-        <button class="checkout-button">Checkout Instagram</button>
-        <button class="checkout-button">Checkout Email</button>
+      <div id="checkout-body">
+        <div id="checkout-poster-items"></div>
+        <p id="checkout-total">
+          Total: <span id="checkout-total-value"></span>CHF
+        </p>
+
+        <div id="checkout-actions">
+          <button class="checkout-button">Checkout Instagram</button>
+          <button class="checkout-button">Checkout Email</button>
+        </div>
       </div>
     </div>
   </body>
@@ -103,9 +114,16 @@
 
       const cart = getCart();
       const list = document.getElementById("checkout-poster-items");
-      for (let [poster, sizeAndAmount] of Object.entries(cart))
-        for (let [size, amount] of Object.entries(sizeAndAmount))
-          list.innerHTML += `
+      if (!cart || Object.keys(cart).length === 0) {
+        document.getElementById("checkout-body").style.display = "none";
+        document.getElementById("checkout-empty").style.display = "flex";
+      } else {
+        document.getElementById("checkout-body").style.display = "flex";
+        document.getElementById("checkout-empty").style.display = "none";
+
+        for (let [poster, sizeAndAmount] of Object.entries(cart))
+          for (let [size, amount] of Object.entries(sizeAndAmount))
+            list.innerHTML += `
         <div class="poster-checkout">
           <h3>${POSTERS[poster]}</h3>
           <img src="./posters/${poster}.jpg" width="50" />
@@ -116,6 +134,7 @@
           <h4>Quantity:</h4>
           <input type="number" value="${amount}" />
         </div>`;
+      }
 
       document.getElementById("checkout-total-value").innerHTML =
         Object.entries(cart).reduce((acc, [poster, sizeAndAmount]) => {
