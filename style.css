@@ -8,6 +8,7 @@ button {
   display: flex;
   flex-direction: column;
   align-items: center;
+  min-height: 100vmax;
 }
 
 body,
@@ -202,9 +203,20 @@ a {
   margin: 10%;
 }
 
+#poster {
+  height: unset;
+  width: 80%;
+  margin-top: 25px;
+}
+
 #purchase {
-  width: 80vw;
+  width: 80%;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding-bottom: 25px;
+  column-gap: 25px;
 }
 
 /* Size selector */
@@ -231,6 +243,7 @@ a {
   margin: 25px 0;
   border-top: 1px solid black;
   width: 100%;
+  display: none;
 }
 
 .size-select-open p {
@@ -264,7 +277,7 @@ a {
 /* End Size selector */
 
 .add-to-cart {
-  margin-top: 50px;
+  margin-top: auto;
   width: 100%;
   cursor: pointer;
   height: 35px;
@@ -351,6 +364,7 @@ a {
   display: flex;
   flex-direction: column;
   overflow-y: scroll;
+  display: none;
 }
 
 #checkout h3,
