@@ -21,7 +21,7 @@ div {
 
 body > section {
   width: 100%;
-  min-height: 100vmax;
+  height: 100vmax;
 }
 
 #menu,
@@ -332,7 +332,8 @@ a {
 
 #posters {
   width: 90%;
-  overflow: scroll;
+  display: flex;
+  flex-direction: column;
 }
 
 #posters #posters-prints-amount {
@@ -345,6 +346,8 @@ a {
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(2, 1fr);
   gap: 2vmax;
+  overflow-y: scroll;
+  margin-bottom: 25px;
 }
 
 #poster-images figure {
@@ -388,6 +391,8 @@ a {
   width: 60%;
   align-self: start;
   margin-left: 10%;
+  overflow-y: scroll;
+  margin-top: 10px;
 }
 
 #about-poem p {
@@ -395,6 +400,10 @@ a {
   line-height: 30px;
   letter-spacing: 0;
   margin: 30px 0;
+}
+
+#about-poem p:first-child {
+  margin-top: 0;
 }
 
 #checkout {
