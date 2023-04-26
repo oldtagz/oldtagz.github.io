@@ -88,9 +88,9 @@ a {
 }
 
 #home {
-  background-image: url("./posters/shinjuku.jpg");
-  background-size: 200%;
-  background-position: top right;
+  background-image: url("./posters/shinjuku-background.jpg");
+  background-size: cover;
+  background-position: top center;
 }
 
 #logo {
@@ -114,13 +114,15 @@ a {
 #checkout-button {
   background-image: url("./icons/shopping-cart.svg");
   background-size: contain;
-  width: 65px;
-  height: 65px;
+  width: 45px;
+  height: 45px;
   border: none;
   cursor: pointer;
   position: fixed;
   right: 0;
   margin: 15px;
+  filter: invert(0.8);
+  opacity: 1;
 }
 
 #email {
@@ -137,7 +139,7 @@ a {
 #menu-button {
   background-image: url("./icons/menu-button.png");
   background-size: contain;
-  filter: invert(0.25);
+  filter: invert(0.8);
   width: 50px;
   height: 50px;
   border: none;
@@ -372,21 +374,18 @@ a {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-image: url("./posters/shinjuku.jpg");
+  background-image: url("./posters/okubo-station-background.jpg");
   background-size: cover;
   background-position: bottom;
-  background-size: 200%;
-  background-position: bottom right;
 }
 
 #about h2 {
   flex-grow: 1;
-  color: black;
+  color: white;
   font-weight: 300;
   margin: 45% 0 0 50%;
   font-style: normal;
   font-size: 18pt;
-  transform: skew(10deg, -5deg);
 }
 
 #about-poem {
@@ -394,18 +393,17 @@ a {
   align-self: start;
   margin-left: 10%;
   overflow-y: scroll;
-  margin-top: 10px;
+  margin: 25px 10% 25px 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
 }
 
 #about-poem p {
   font-size: 12pt;
   line-height: 30px;
   letter-spacing: 0;
-  margin: 30px 0;
-}
-
-#about-poem p:first-child {
-  margin-top: 0;
+  margin: 0;
 }
 
 #checkout {
