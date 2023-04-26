@@ -8,7 +8,7 @@
     <title>oldtagz</title>
     <link rel="stylesheet" href="./style.css" />
   </head>
-  <body onload="loadPosters(); loadCheckout()">
+  <body onload="loadPosters(); refreshCart()">
     <button id="menu-button" onclick="openSlideOut('menu')"></button>
     <button id="checkout-button" onclick="openSlideOut('checkout')"></button>
 
@@ -46,7 +46,7 @@
         </p>
 
         <p>
-          There's mystery in every frame, A hint of something more, untamed.<br />So,
+          There's mystery in every frame, a hint of something more, untamed.<br />So,
           do come and join me on this fabulous ride, as we explore life's ebb
           and tide.”
         </p>
@@ -108,45 +108,6 @@
   <script src="./posters.js"></script>
   <script src="./cart.js"></script>
   <script>
-    const loadCheckout = () => {
-      const url = new URL(window.location);
-      if (url.hash === "#checkout") openSlideOut("checkout");
-
-      const cart = getCart();
-      const list = document.getElementById("checkout-poster-items");
-      if (!cart || Object.keys(cart).length === 0) {
-        document.getElementById("checkout-body").style.display = "none";
-        document.getElementById("checkout-empty").style.display = "flex";
-      } else {
-        document.getElementById("checkout-body").style.display = "flex";
-        document.getElementById("checkout-empty").style.display = "none";
-
-        for (let [poster, sizeAndAmount] of Object.entries(cart))
-          for (let [size, amount] of Object.entries(sizeAndAmount))
-            list.innerHTML += `
-        <div class="poster-checkout">
-          <h3>${POSTERS[poster]}</h3>
-          <img src="./posters/${poster}.jpg" width="50" />
-          <h4>Size:</h4>
-          <select>
-            <option>${size} cm</option>
-          </select>
-          <h4>Quantity:</h4>
-          <input type="number" value="${amount}" />
-        </div>`;
-      }
-
-      document.getElementById("checkout-total-value").innerHTML =
-        Object.entries(cart).reduce((acc, [poster, sizeAndAmount]) => {
-          return (acc += Object.entries(sizeAndAmount).reduce(
-            (acc, [size, amount]) => {
-              return (acc += Number(SIZES[size]) * amount);
-            },
-            0
-          ));
-        }, 0);
-    };
-
     const loadPosters = () => {
       const posters = document.querySelector("#poster-images");
       for (const [file, title] of Object.entries(POSTERS)) {
@@ -181,6 +142,9 @@
             ? bodyCheckoutListener
             : null
         );
+        document
+          .getElementById(id)
+          .addEventListener("click", (e) => e.stopPropagation());
       }, 250);
     };
 
