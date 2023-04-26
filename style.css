@@ -340,18 +340,26 @@ a {
   flex-direction: column;
 }
 
-#posters #posters-prints-amount {
-  margin-bottom: -10%;
-  margin-top: 20%;
-}
-
 #poster-images {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(2, 1fr);
+  grid-auto-rows: auto;
   gap: 20px;
   overflow-y: scroll;
-  margin-bottom: 25px;
+  margin: 25px 0;
+  align-items: center;
+}
+
+#poster-images h5 {
+  align-self: end;
+}
+
+#poster-images figure:nth-child(2) {
+  grid-row: span 3;
+}
+#poster-images figure:nth-child(3) {
+  grid-row: span 2;
+  align-self: start;
 }
 
 #poster-images figure {

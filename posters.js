@@ -1,6 +1,6 @@
 const POSTERS = {
-    "okubo-station": "Okubo Station 1AM",
     "shinjuku": "Shinjuku-ku",
+    "okubo-station": "Okubo Station 1AM",
     "jdm": "JDM",
     "toyota-taxi": "Toyota Taxi",
 }
