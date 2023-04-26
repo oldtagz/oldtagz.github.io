@@ -1,7 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,500;1,100&display=swap");
 
-body {
-  min-height: 100vmax;
+html {
+  scroll-behavior: smooth;
+  scroll-snap-type: y mandatory;
 }
 
 body,
@@ -22,6 +23,7 @@ div {
 body > section {
   width: 100%;
   height: 100vmax;
+  scroll-snap-align: center;
 }
 
 #menu,
