@@ -85,7 +85,7 @@
       <div id="checkout-empty">
         <p>Shopping cart is empty</p>
         <div id="checkout-actions">
-          <a href="/#posters">
+          <a href="/#posters" onclick="closeSlideOut('checkout')">
             <button class="checkout-button">Browse all posters</button>
           </a>
         </div>
@@ -107,6 +107,7 @@
 
   <script src="./posters.js"></script>
   <script src="./cart.js"></script>
+  <script src="./slide-out.js"></script>
   <script>
     const loadPosters = () => {
       const posters = document.querySelector("#poster-images");
@@ -124,39 +125,6 @@
       document.querySelector("#posters-prints-amount").innerHTML = `${
         Object.keys(POSTERS).length
       } Prints`;
-    };
-
-    let bodyMenuListener = () => closeSlideOut("menu");
-    let bodyCheckoutListener = () => closeSlideOut("checkout");
-
-    const openSlideOut = (id) => {
-      document.getElementById(id).classList = "open slide-in";
-      document.getElementById(`${id}-button`).style.opacity = "0";
-      document.body.style.overflowY = "hidden";
-      setTimeout(() => {
-        document.body.addEventListener(
-          "click",
-          id === "menu"
-            ? bodyMenuListener
-            : id === "checkout"
-            ? bodyCheckoutListener
-            : null
-        );
-        document
-          .getElementById(id)
-          .addEventListener("click", (e) => e.stopPropagation());
-      }, 250);
-    };
-
-    const closeSlideOut = (id) => {
-      document.body.removeEventListener("click", bodyMenuListener);
-      document.body.removeEventListener("click", bodyCheckoutListener);
-      const element = document.getElementById(id);
-      document.getElementById(id).classList = "open slide-out";
-      setTimeout(() => (element.classList = ""), 250);
-
-      document.getElementById(`${id}-button`).style.opacity = "1";
-      document.body.style.overflowY = "scroll";
     };
   </script>
 </html>
