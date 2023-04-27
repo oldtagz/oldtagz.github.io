@@ -1,19 +1,36 @@
 const updateCart = (slug, size, amount) => {
   let cart = getCart();
   if (!cart) cart = {};
-  if (!cart[slug]) cart[slug] = {};
-  cart[slug][size] = amount;
-  localStorage.setItem("cart", JSON.stringify(cart));
+  if (amount) {
+    if (!cart[slug]) cart[slug] = {};
+    cart[slug][size] = amount;
+  } else {
+    if (cart[slug] && cart[slug][size]) delete cart[slug][size];
+    if (cart[slug] && Object.keys(cart[slug]).length === 0) delete cart[slug];
+  }
+  if (Object.keys(cart).length === 0) localStorage.removeItem("cart");
+  else localStorage.setItem("cart", JSON.stringify(cart));
 };
 
-const getCart = () => JSON.parse(localStorage.getItem("cart"));
+const getCart = () => JSON.parse(localStorage.getItem("cart")) ?? {};
+const updateCartSizeFor = (slug, oldSize, newSize, amount) => {
+  const cart = getCart();
+  updateCart(
+    slug,
+    newSize,
+    +amount + (cart[slug] ? (cart[slug][newSize] ? +cart[slug][newSize] : 0) : 0)
+  );
+  updateCart(slug, oldSize, 0);
+};
 
 const refreshCart = () => {
   const url = new URL(window.location);
   if (url.hash === "#checkout") openSlideOut("checkout");
 
-  const cart = getCart();
   const list = document.getElementById("checkout-poster-items");
+  list.innerHTML = "";
+
+  const cart = getCart();
   if (!cart || Object.keys(cart).length === 0) {
     document.getElementById("checkout-body").style.display = "none";
     document.getElementById("checkout-empty").style.display = "flex";
@@ -28,11 +45,21 @@ const refreshCart = () => {
           <h3>${POSTERS[poster]}</h3>
           <img src="./posters/${poster}.jpg" width="50" />
           <h4>Size:</h4>
-          <select>
-            <option>${size} cm</option>
+          <select onchange="updateCartSizeFor('${poster}', '${size}', event.target.value, '${amount}'); refreshCart()">
+          ${Object.keys(SIZES)
+            .map(
+              (availableSize) =>
+                `<option value="${availableSize}" ${
+                  availableSize === size ? "selected" : ""
+                }>${availableSize} cm</option>`
+            )
+            .join("")}
           </select>
           <h4>Quantity:</h4>
-          <input type="number" value="${amount}" />
+          <div>
+            <input type="number" value="${amount}" onchange="updateCart('${poster}', '${size}', event.target.value); refreshCart()" />
+            <button onclick="updateCart('${poster}', '${size}', 0); refreshCart()">Remove</button>
+          </div>
         </div>`;
   }
 
