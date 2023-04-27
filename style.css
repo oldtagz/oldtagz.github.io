@@ -3,6 +3,7 @@
 html {
   scroll-behavior: smooth;
   scroll-snap-type: y mandatory;
+  width: 100%;
 }
 
 body,
@@ -137,19 +138,74 @@ a {
 }
 
 #menu-button {
-  background-image: url("./icons/menu-button.png");
-  background-size: contain;
-  filter: invert(0.8);
-  width: 50px;
-  height: 50px;
-  border: none;
-  cursor: pointer;
-  top: 14%;
-  left: 0;
-  margin: 10%;
+  left: 25px;
+  top: 14vh;
   position: fixed;
-  transition: opacity 0.5s;
-  opacity: 1;
+}
+
+#menu-button::after,
+#menu-button::before {
+  background-color: #ccc;
+}
+
+.menu,
+.close {
+  display: block;
+  width: 30px;
+  height: 25px;
+}
+
+.menu {
+  background: linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0) 11.5px,
+    #ccc 11.5px,
+    #ccc 13.5px,
+    rgba(0, 0, 0, 0) 13.5px,
+    rgba(0, 0, 0, 0) 13.5px
+  );
+}
+
+.menu::before,
+.close::before,
+.menu::after,
+.close::after {
+  position: absolute;
+  content: "";
+}
+
+.menu::before,
+.close::before {
+  top: 0;
+}
+
+.menu::after,
+.close::after {
+  bottom: 0;
+}
+
+.menu::before,
+.close::before,
+.menu::after,
+.close::after {
+  height: 2px;
+  width: 100%;
+  background-color: #000;
+  transition: transform 0.25s ease-out;
+  margin: 5px 0;
+  left: 0;
+}
+
+.close {
+  background: none;
+}
+
+.close::before {
+  transform: translate(0, 6px) rotate(-45deg);
+}
+
+.close::after {
+  transform: translate(0, -6px) rotate(45deg);
 }
 
 #menu {
@@ -201,7 +257,7 @@ a {
   color: white;
   letter-spacing: 0.5em;
   margin: 0;
-  padding: 55% 0 0 10%;
+  padding: 25% 0 0 10%;
   color: white;
   font-weight: 300;
   font-size: 18pt;
@@ -231,16 +287,6 @@ a {
   height: 50px;
   border: none;
   cursor: pointer;
-}
-
-.close {
-  font-size: 14pt;
-  border: none;
-  cursor: pointer;
-  position: fixed;
-  color: white;
-  top: 17.5%;
-  margin: 10%;
 }
 
 #poster {
@@ -297,11 +343,10 @@ a {
   padding-left: 20px;
 }
 
-#size-select-open button {
+#size-select-open .close {
+  position: relative;
   float: right;
-  line-height: 50px;
-  font-size: 16pt;
-  padding-right: 20px;
+  top: 12.5px;
 }
 
 #size-select-open ul {
@@ -401,7 +446,7 @@ a {
   align-self: start;
   margin-left: 10%;
   overflow-y: scroll;
-  margin: 25px 10% 25px 25px;
+  margin: 15px 10% 15px 15px;
   display: flex;
   flex-direction: column;
   gap: 30px;
@@ -529,6 +574,13 @@ a {
   width: 100%;
 }
 
+#checkout-poster-items .poster-checkout button {
+  text-decoration: underline;
+  letter-spacing: 0;
+  float: right;
+  color: rgba(0, 0, 0, 0.5);
+}
+
 #checkout #checkout-total {
   text-align: right;
   margin: 25px;
@@ -566,4 +618,13 @@ a {
 #checkout.open {
   z-index: 1;
   opacity: 1;
+}
+
+#menu.open + #menu-button {
+  z-index: 1;
+}
+
+#menu.open + #menu-button::after,
+#menu.open + #menu-button::before {
+  background-color: #fff;
 }

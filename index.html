@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="./style.css" />
   </head>
   <body onload="loadPosters(); refreshCart()">
-    <button id="menu-button" onclick="openSlideOut('menu')"></button>
     <button id="checkout-button" onclick="openSlideOut('checkout')"></button>
 
     <section id="home">
@@ -56,14 +55,6 @@
 
     <!-- slide out menu -->
     <div id="menu">
-      <button
-        onclick="closeSlideOut('menu')"
-        id="menu-close-button"
-        class="close"
-      >
-        &#9587;
-      </button>
-
       <ul>
         <li><a href="#posters" onclick="closeSlideOut('menu')">POSTERS</a></li>
         <li><a href="#about" onclick="closeSlideOut('menu')">ABOUT</a></li>
@@ -78,11 +69,16 @@
         </a>
       </div>
     </div>
+    <button
+      id="menu-button"
+      class="menu"
+      onclick="document.getElementById(this.id).classList.contains('close') ? closeSlideOut('menu'): openSlideOut('menu')"
+    ></button>
 
     <!-- slide out checkout -->
     <div id="checkout">
       <h2>Shopping cart</h2>
-      <button class="close" onclick="closeSlideOut('checkout')">&#9587;</button>
+      <button class="close" onclick="closeSlideOut('checkout')"></button>
 
       <div id="checkout-empty">
         <p>Shopping cart is empty</p>
