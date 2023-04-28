@@ -1,0 +1,129 @@
+#poster-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+  transition: all 0.5s;
+  position: fixed;
+  overflow: scroll;
+  width: 0;
+  height: 0;
+}
+
+#poster-page.close {
+  transition: all 0.25s;
+  background-color: none;
+  transform: translate3d(0, 50vh, 0) !important;
+  opacity: 0;
+}
+
+#poster-page.open {
+  top: 0;
+  left: 0;
+  transform: translate3d(0, 0, 0) !important;
+  width: 100vw;
+  height: 100vh;
+}
+
+#poster {
+  height: unset;
+  width: 80%;
+  margin-top: 25px;
+}
+
+#purchase {
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding-bottom: 25px;
+  row-gap: 25px;
+}
+
+/* Size selector */
+#size-select {
+  width: 100%;
+  transition: opacity 0.25s;
+}
+
+/* Size selector closed */
+#size-select-closed {
+  background-color: whitesmoke;
+  height: 35px;
+  line-height: 35px;
+  border: 1px solid black;
+  padding-left: 10px;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+#size-select-closed:hover {
+  background-color: #bbb;
+  color: white;
+}
+
+#size-select-closed .down-arrow {
+  float: right;
+}
+
+#size-select-open {
+  background: white;
+  color: black;
+  border-top: 1px solid black;
+  width: 100%;
+  transition: all 0.25s;
+  margin: 25px 0;
+  overflow: hidden;
+}
+
+#size-select-open p {
+  line-height: 50px;
+  margin: 0;
+  font-size: 14pt;
+  border-bottom: 1px solid black;
+  padding-left: 20px;
+}
+
+#size-select-open .close {
+  position: relative;
+  float: right;
+  top: 12.5px;
+}
+
+#size-select-open ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+#size-select-open li {
+  border-bottom: 1px solid black;
+  text-align: center;
+  height: 45px;
+  line-height: 45px;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+#size-select-open li:hover {
+  background-color: #000000;
+  color: white;
+}
+
+/* End Size selector */
+
+.add-to-cart {
+  margin-top: auto;
+  width: 100%;
+  cursor: pointer;
+  height: 35px;
+  line-height: 35px;
+  background-color: #000000;
+  color: white;
+  text-align: center;
+}
+
+.add-to-cart > span {
+  margin-left: 10px;
+}

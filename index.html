@@ -7,6 +7,7 @@
 
     <title>oldtagz</title>
     <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./poster.css" />
   </head>
   <body onload="loadPosters(); refreshCart()">
     <button id="checkout-button" onclick="openSlideOut('checkout')"></button>
@@ -56,8 +57,8 @@
     <!-- slide out menu -->
     <div id="menu">
       <ul>
-        <li><a href="#posters" onclick="closeSlideOut('menu')">POSTERS</a></li>
-        <li><a href="#about" onclick="closeSlideOut('menu')">ABOUT</a></li>
+        <li><a href="/#posters" onclick="closeSlideOut('menu')">POSTERS</a></li>
+        <li><a href="/#about" onclick="closeSlideOut('menu')">ABOUT</a></li>
       </ul>
 
       <div id="contact">
@@ -96,7 +97,6 @@
         </p>
 
         <div id="checkout-actions">
-          <button class="checkout-button">Checkout Instagram</button>
           <button class="checkout-button">Checkout Email</button>
         </div>
       </div>
@@ -108,13 +108,14 @@
   <script src="./slide-out.js"></script>
   <script>
     const loadPosters = () => {
+      const posterFromLink = getPosterFromLink();
+      if (posterFromLink) openPoster(posterFromLink);
+
       const posters = document.querySelector("#poster-images");
       for (const [file, title] of Object.entries(POSTERS)) {
         posters.innerHTML += `
         <figure>
-          <a href="./poster.html?poster=${file}" target="_blank">
-            <img src="./posters/${file}.jpg" />
-          </a>
+          <img src="./posters/${file}.jpg" onclick="openPoster('${file}', event)" />
           <figcaption>${title}</figcaption>
         </figure>
       `;
