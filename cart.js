@@ -13,12 +13,14 @@ const updateCart = (slug, size, amount) => {
 };
 
 const getCart = () => JSON.parse(localStorage.getItem("cart")) ?? {};
+
 const updateCartSizeFor = (slug, oldSize, newSize, amount) => {
   const cart = getCart();
   updateCart(
     slug,
     newSize,
-    +amount + (cart[slug] ? (cart[slug][newSize] ? +cart[slug][newSize] : 0) : 0)
+    +amount +
+      (cart[slug] ? (cart[slug][newSize] ? +cart[slug][newSize] : 0) : 0)
   );
   updateCart(slug, oldSize, 0);
 };
@@ -63,9 +65,7 @@ const refreshCart = () => {
         </div>`;
   }
 
-  document.getElementById("checkout-total-value").innerHTML = Object.entries(
-    cart
-  ).reduce((acc, [_, sizeAndAmount]) => {
+  const total = Object.entries(cart).reduce((acc, [_, sizeAndAmount]) => {
     return (acc += Object.entries(sizeAndAmount).reduce(
       (acc, [size, amount]) => {
         return (acc += Number(SIZES[size]) * amount);
@@ -73,4 +73,18 @@ const refreshCart = () => {
       0
     ));
   }, 0);
+  document.getElementById("checkout-total-value").innerHTML = total;
+  document.getElementById(
+    "checkout-link"
+  ).href = `mailto:kiry.loetscher@gmail.com?subject=Bestellung Poster OldTagz&body=Gerne würde ich folgende Bestellung aufgeben:%0d%0a%0d%0a${Object.entries(
+    cart
+  )
+    .flatMap(([slug, sizeAndAmount]) =>
+      Object.entries(sizeAndAmount).map(([size, amount]) => {
+        return `• ${amount}x ${POSTERS[slug]} (${size}) à ${
+          SIZES[size]
+        } = ${Number(+amount * +SIZES[size])}.-`;
+      })
+    )
+    .join("%0d%0a")}%0d%0a%0d%0aTotal: ${total}.-%0d%0a%0d%0aLiebe Grüsse`;
 };
