@@ -83,7 +83,7 @@ const refreshCart = () => {
       Object.entries(sizeAndAmount).map(([size, amount]) => {
         return `• ${amount}x ${POSTERS[slug]} (${size}) à ${
           SIZES[size]
-        } = ${Number(+amount * +SIZES[size])}.-`;
+        }: ${Number(+amount * +SIZES[size])}.-`;
       })
     )
     .join("%0d%0a")}%0d%0a%0d%0aTotal: ${total}.-%0d%0a%0d%0aLiebe Grüsse`;
