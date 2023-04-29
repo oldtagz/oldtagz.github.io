@@ -76,7 +76,7 @@ const refreshCart = () => {
   document.getElementById("checkout-total-value").innerHTML = total;
   document.getElementById(
     "checkout-link"
-  ).href = `mailto:kiry.loetscher@gmail.com?subject=Bestellung Poster OldTagz&body=Gerne würde ich folgende Bestellung aufgeben:%0d%0a%0d%0a${Object.entries(
+  ).href = `mailto:kiry.loetscher@gmail.com?subject=Bestellung OldTagz&body=${Object.entries(
     cart
   )
     .flatMap(([slug, sizeAndAmount]) =>
