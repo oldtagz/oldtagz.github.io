@@ -26,6 +26,14 @@ section,
   height: 100dvh;
 }
 
+#home {
+  height: 100svh;
+}
+
+#about {
+  height: 100lvh;
+}
+
 button {
   display: flex;
   flex-direction: column;
@@ -38,7 +46,7 @@ div {
 }
 
 body > section {
-  scroll-snap-align: center;
+  scroll-snap-align: start;
   display: flex;
   flex-direction: column;
 }
