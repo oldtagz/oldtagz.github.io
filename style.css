@@ -12,7 +12,6 @@ body {
 body {
   overflow-y: scroll;
   scroll-behavior: smooth;
-  scroll-snap-type: y mandatory;
 }
 
 body,
@@ -43,8 +42,7 @@ div {
   margin: 0;
 }
 
-body > section {
-  scroll-snap-align: start;
+section {
   display: flex;
   flex-direction: column;
 }
@@ -119,7 +117,7 @@ a {
   width: 300px;
   margin: 0;
   color: white;
-  position: absolute;
+  position: relative;
   top: 3vh;
   left: 3vh;
 }
@@ -566,6 +564,7 @@ button.close::after {
 
   #logo {
     color: black;
+    position: absolute;
   }
 
   #about {
