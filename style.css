@@ -337,7 +337,7 @@ button.close::after {
 }
 
 #poster-images figure {
-  margin: 0;
+  margin: 0 auto;
   display: flex;
   gap: 8px;
   flex-direction: column;
@@ -558,4 +558,48 @@ button.close::after {
 #menu.open + #menu-button::after,
 #menu.open + #menu-button::before {
   background-color: #fff;
+}
+
+@media only screen and (min-width: 768px) {
+  /* For desktop */
+  #home {
+    height: 0;
+  }
+
+  #logo {
+    color: black;
+  }
+
+  #about {
+    background-size: auto;
+  }
+
+  #poster-images {
+    grid-template-columns: repeat(4, 1fr);
+    row-gap: 0;
+  }
+
+  #poster-images figure {
+    grid-row: unset !important;
+    align-self: unset !important;
+    max-width: 35vmin;
+  }
+
+  #poster-images figure:nth-child(3),
+  #poster-images figure:nth-child(4) {
+    max-width: 45vmin;
+  }
+
+  #posters-prints-amount {
+    grid-column: span 4;
+  }
+
+  #checkout,
+  #menu {
+    width: 35%;
+  }
+
+  #about h2 {
+    margin-top: 15%;
+  }
 }

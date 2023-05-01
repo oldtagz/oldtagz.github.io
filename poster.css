@@ -25,20 +25,26 @@
   height: 100vh;
 }
 
+#poster-page h4 {
+  margin-bottom: 25px;
+}
+
 #poster {
   height: unset;
-  width: 80%;
-  margin-top: 25px;
+  width: 90%;
+  margin-top: auto;
+  max-height: 800px;
 }
 
 #purchase {
   width: 80%;
+  max-width: 500px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  flex: 1;
   padding-bottom: 25px;
   row-gap: 25px;
+  margin-top: auto;
 }
 
 /* Size selector */
@@ -114,7 +120,6 @@
 /* End Size selector */
 
 .add-to-cart {
-  margin-top: auto;
   width: 100%;
   cursor: pointer;
   height: 35px;
@@ -126,4 +131,12 @@
 
 .add-to-cart > span {
   margin-left: 10px;
+}
+
+@media only screen and (min-width: 768px) {
+  /* For desktop */
+  #poster {
+    width: unset;
+    height: calc(75vh);
+  }
 }
