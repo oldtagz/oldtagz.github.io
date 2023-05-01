@@ -31,7 +31,7 @@ const posterPage = `
 
       <div
         class="add-to-cart"
-        onclick="window.location.href = '/#checkout'; updateCart(state.poster, state.size, 1); refreshCart();"
+        onclick="window.location.href = '#checkout'; updateCart(state.poster, state.size, 1); refreshCart();"
       >
         <span>Add to cart</span>
       </div>
