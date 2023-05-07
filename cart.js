@@ -46,20 +46,22 @@ const refreshCart = () => {
         <div class="poster-checkout">
           <h3>${POSTERS[poster]}</h3>
           <img src="./posters/${poster}.jpg" width="50" />
-          <h4>Size:</h4>
-          <select onchange="updateCartSizeFor('${poster}', '${size}', event.target.value, '${amount}'); refreshCart()">
-          ${Object.keys(SIZES)
-            .map(
-              (availableSize) =>
-                `<option value="${availableSize}" ${
-                  availableSize === size ? "selected" : ""
-                }>${availableSize} cm</option>`
-            )
-            .join("")}
-          </select>
-          <h4>Quantity:</h4>
           <div>
-            <input type="number" value="${amount}" onchange="updateCart('${poster}', '${size}', event.target.value); refreshCart()" />
+            <label for="size-${poster}-${size}">Size:</label>
+            <select id="size-${poster}-${size}" onchange="updateCartSizeFor('${poster}', '${size}', event.target.value, '${amount}'); refreshCart()">
+            ${Object.keys(SIZES)
+              .map(
+                (availableSize) =>
+                  `<option value="${availableSize}" ${
+                    availableSize === size ? "selected" : ""
+                  }>${availableSize} cm</option>`
+              )
+              .join("")}
+            </select>
+          </div>
+          <div>
+            <label for="quantity-${poster}-${size}">Quantity:</label>
+            <input type="number" name="quantity-${poster}-${size}" value="${amount}" onchange="updateCart('${poster}', '${size}', event.target.value); refreshCart()" />
             <button onclick="updateCart('${poster}', '${size}', 0); refreshCart()">Remove</button>
           </div>
         </div>`;
